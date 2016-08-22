@@ -331,7 +331,7 @@ Win__Fling2(FlingDirection = 1, WinID = "A", DoubleColumns = 0, Column = 0)
     ; When a window touches a border between two monitors, the height of the other one is used, 
     ; even is the window barely touches the border
     WinGetPos, WinX2, WinY2, WinW2, WinH2, ahk_id %WinID%
-    if (%MonitorCount% > 1 and (WinFlingH != WinH2 or Abs(WinFlingW-WinW2) > 1))
+    if (MonitorCount > 1 and (WinFlingH != WinH2 or Abs(WinFlingW-WinW2) > 1))
     {
         ; Change Monitor
         ; Compute the number of the next monitor in the direction of the specified fling (+1 or -1)
