@@ -78,7 +78,7 @@ Win__Fling2(FlingDirection = 1, WinID = "A", DoubleColumns = 0, Column = 0)
     ; for this the width is dived by the height and round up to the next integer
     ; this gives 2 positions for a 16:9 Monitor (2560x1440 -> DPI corrected to 200% -> 1280x690 )
     ; and 3 positions for a ultra wide monitor (3440x1440)
-
+    
     Loop, %MonitorCount%
     {
         SysGet, Monitor%A_Index%, MonitorWorkArea, %A_Index%
@@ -327,17 +327,34 @@ Win__Fling2(FlingDirection = 1, WinID = "A", DoubleColumns = 0, Column = 0)
     WinMove, ahk_id %WinID%,, WinFlingX, WinFlingY, WinFlingW, WinFlingH
        
     ; Fix for some windows like ConEmu
+    ; The problem seems to be dpi/multi monitor related
+    ; When a window touches a border between two monitors, the height of the other one is used, 
+    ; even is the window barely touches the border
     WinGetPos, WinX2, WinY2, WinW2, WinH2, ahk_id %WinID%
-    if (WinFlingH != WinH2 or Abs(WinFlingW-WinW2) > 1) 
+    if (%MonitorCount% > 1 and (WinFlingH != WinH2 or Abs(WinFlingW-WinW2) > 1))
     {
+        ; Change Monitor
+        ; Compute the number of the next monitor in the direction of the specified fling (+1 or -1)
+        ;  Valid monitor numbers are 1..MonitorCount, and we effect a circular fling.
+        NextMonitor := CurrMonitor + FlingDirection
+        if (NextMonitor > MonitorCount)
+        {
+            NextMonitor = 1
+        }
+        else if (NextMonitor <= 0)
+        {
+            NextMonitor = %MonitorCount%
+        }
+        CorrectionFactor := Monitor%NextMonitor%Height/Monitor%CurrMonitor%Height
         if (WinFlingH != WinH2) 
         {
-            WinFlingH := WinFlingH-((Abs(WinFlingH-WinH2)/2)+1)
+            WinFlingH := Monitor%NextMonitor%Height+(HeightCompensationFactor*2)
         }
         if (Abs(WinFlingW-WinW2) > 1) 
         {
             WinFlingW := WinFlingW-((Abs(WinFlingW-WinW2)/2)+1)
         }
+        
         WinMove, ahk_id %WinID%,, WinFlingX, WinFlingY, WinFlingW, WinFlingH
     }
     return 1
