@@ -36,6 +36,7 @@ Shortcut | Note | Application | File
 `Win-l`  | **L**ogs user off and sends monitor immediately into standby. Replaces default windows shortcut. | | [LockAndTurnOffMonitor.ahk](LockAndTurnOffMonitor.ahk)
 `Win-s`  | Moves the actual Notepad++ instance into foreground or opens a new Notepad++ instance. The shortcut comes from **S**ciTE, which I used before Notepad++. | [Notepad++](https://notepad-plus-plus.org/) | [Notepad++.ahk](Notepad++.ahk)
 `Ctrl+h` | Toggles display of **h**idden files in Windows Explorer. | Windows Explorer | [ToggleHiddenFiles.ahk](ToggleHiddenFiles.ahk)
+`Win+u` | Starts Updates of Chocolatey (admin) and MSYS2 via ConEmu. Replaces default windows shortcut. | [ConEmu](https://conemu.github.io/) | [Update.ahk](Update.ahk)
 
 ## Scripts
 
