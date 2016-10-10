@@ -56,3 +56,4 @@ File | Function
 * https://autohotkey.com/board/topic/51956-flinging-windows-across-a-multi-monitor-system/
 * https://gist.github.com/AWMooreCO/1ef708055a11862ca9dc
 * http://davejamesmiller.com/blog/autohotkey-toggle-hidden-files-andor-file-extensions-in-windows-explorer
+* https://autohotkey.com/board/topic/37352-dockndrag-docks-two-windows-together-for-move-and-resize/
