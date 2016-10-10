@@ -260,14 +260,23 @@ Win__Fling2(FlingDirection = 1, WinID = "A", DoubleColumns = 0, Column = 0)
             }
         }
         else
-        {
+        {   
             ; The next (quite complex) if is required to perform the step from the most left column to the next monitor without moving into a double column
-            if (CurrPos > 2 or (CurrPos > 1 and DoubleColumns == 1 and Monitor%CurrMonitor%Positions > 2 and WinW > (Monitor%CurrMonitor%PositionSize + WidthCompensationFactor2 + WidthCompensationFactor)))
-            {      
+            ; the last two "or"s are needed when a window is right from the centre of the first third/half and fling direction is left, see https://github.com/baderas/autohotkey-scripts/issues/1
+            ; the last or fixes the special case that a window is on the left third/half in the rightest monitor and fling direction is left, because then it should not enter this if clause
+            if (CurrPos > 2 or (CurrPos > 1
+                and ((DoubleColumns == 1 
+                and Monitor%CurrMonitor%Positions > 2 
+                and WinW > (Monitor%CurrMonitor%PositionSize + WidthCompensationFactor2 + WidthCompensationFactor))
+                or WinCentreX > Floor((Monitor%CurrMonitor%PositionSize/2) + Monitor%CurrMonitor%PositionSize*(CurrPos - 2) + Monitor%CurrMonitor%Left)
+                or (WinCentreX == Floor((Monitor%CurrMonitor%PositionSize/2) + Monitor%CurrMonitor%PositionSize*(CurrPos - 2) + Monitor%CurrMonitor%Left)
+                and CurrPos > Monitor%CurrMonitor%Positions))))
+            {    
                 ; check if double columns are activated and move window accordingly
                 if (DoubleColumns == 1 and Monitor%CurrMonitor%Positions > 2)
-                {
-                    if (WinW > (Monitor%CurrMonitor%PositionSize+30))
+                {   
+                    if (WinW > (Monitor%CurrMonitor%PositionSize+30) 
+                        or WinCentreX > Floor(Monitor%CurrMonitor%PositionSize/2) + Monitor%CurrMonitor%PositionSize*(CurrPos - 2)+ Monitor%CurrMonitor%Left)
                     {
                         ; Only change positions on the same Monitor
                         WinFlingX := Monitor%CurrMonitor%Left + ((Monitor%CurrMonitor%PositionSize*(CurrPos-2))) - WidthCompensationFactor2
@@ -294,7 +303,7 @@ Win__Fling2(FlingDirection = 1, WinID = "A", DoubleColumns = 0, Column = 0)
                 }
             }
             else
-            {
+            {   
                 ; Change Monitor
                 ; Compute the number of the next monitor in the direction of the specified fling (+1 or -1)
                 ;  Valid monitor numbers are 1..MonitorCount, and we effect a circular fling.
