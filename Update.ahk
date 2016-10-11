@@ -4,8 +4,9 @@
 ;; https://github.com/baderas/autohotkey-scripts
 
 ;; The Fling function does not work for admin powershell window (without ConEmu)
-;; Choco should be updated from Powershell, not from ConEmu, because if ConEmu is updated via Chocolatey problems may occur otherwise
-;; UAC dialoge often is not active (can't change this via autohotkey)
+;; Choco should be updated from Powershell, not from ConEmu, because if ConEmu is updated via Chocolatey problems occur and ConEmu is not updated
+;; When using ConEmu for choco updates: UAC dialoge often is not active (can't change this via autohotkey)
+;; When using Powershell for choco updates: Window is not Fling-able
 
 #Include %A_LineFile%\..\WindowPlacementFunctions.ahk
 
@@ -14,8 +15,8 @@ SetTitleMatchMode 2
 #u:: {
 If !WinExist("Running Chocolatey Update") and !WinExist("Running MSYS2 Update")
 {
-    ;Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
-    Run C:\Program Files\ConEmu\ConEmu64.exe -Title "Running Chocolatey Update" -run powershell.exe -new_console:a -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
+    Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
+    ;Run C:\Program Files\ConEmu\ConEmu64.exe -Title "Running Chocolatey Update" -run powershell.exe -new_console:a -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
     ;MoveToMouse(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
