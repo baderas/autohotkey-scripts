@@ -51,11 +51,11 @@ File | Function
 [Maximize.ahk](Maximize.ahk) | Used to maximize specific programs after they are started via [Autorun.ahk](Autorun.ahk). |
 [WindowPlacementFunctions.ahk](WindowPlacementFunctions.ahk) | Library of some often used functions for window placement, etc. | 
 
-## Problems
+## Issues
 
 File | Problem 
 ---- | ------- 
-[Update.ahk](Update.ahk) | `choco upgrade all` can be run via [ConEmu](https://conemu.github.io/) or via Powershell. When running via ConEmu, ConEmu crashes while ConEmu is updated (if installed via [Chocolatey](https://chocolatey.or)). Additionally, the UAC (admin) prompt is sometimes in the background, which is not changeable by [Autohotkey](http://www.autohotkey.com/). When Powershell is used, the Powershell window can't be flinged or changed by [Autohotkey](http://www.autohotkey.com/).
+[Update.ahk](Update.ahk) | `choco upgrade all` can be run via [ConEmu](https://conemu.github.io/) or via Powershell. When running via ConEmu, ConEmu crashes when Chocolatey updates it (if installed via [Chocolatey](https://chocolatey.or)). Additionally, the UAC (admin) prompt is sometimes in the background, which is cannot be changed by [Autohotkey](http://www.autohotkey.com/). When Powershell is used, the Powershell window can't be flinged or repositioned by [Autohotkey](http://www.autohotkey.com/).
 
 ## Other Authotkey Links/Repos
 
