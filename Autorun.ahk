@@ -15,9 +15,9 @@ IfWinNotExist,KeePass
         FileDelete, C:\Users\%USERNAME%\.ssh\cygwinsocket
     }
 }
-IfWinNotExist,Mozilla Firefox
+IfWinNotExist,Google Chrome
 {
-    Run "C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+    Run "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
 }
 IfWinNotExist,Mozilla Thunderbird
 {
