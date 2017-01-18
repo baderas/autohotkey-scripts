@@ -7,7 +7,8 @@
 #s:: {
 IfWinNotExist, ahk_class Notepad++
 {
-    Run "C:\Program Files (x86)\Notepad++\notepad++.exe",,, process_id
+    ;Run "C:\Program Files (x86)\Notepad++\notepad++.exe",,, process_id
+    Run "C:\Program Files\Notepad++\notepad++.exe",,, process_id
     WaitActiveTop(process_id)
     MoveToMouse(process_id)
     WaitMaximize(process_id)
