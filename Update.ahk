@@ -20,14 +20,14 @@ If !WinExist("Running Chocolatey Update") and !WinExist("Running Miktex(User) Up
     ;;Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Miktex(Admin) Update\"; mpm --update-db --update; Write-Host \"Press any key to exit ...\"; $x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
-    Win__Fling2(1, wid, 0, 3)
+    ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(Admin) Update
     WinWait, Update MiKTeX (Admin)
     WinWaitClose
     Run *runas C:\Program Files\MiKTeX 2.9\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
-    Win__Fling2(1, wid, 0, 3)
+    ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(Admin) Update
     WinWait, Update MiKTeX (Admin)
     WinWaitClose
@@ -35,14 +35,14 @@ If !WinExist("Running Chocolatey Update") and !WinExist("Running Miktex(User) Up
     ;;Run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Miktex(User) Update\"; mpm --update-db --update; Write-Host \"Press any key to exit ...\"; $x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
-    Win__Fling2(1, wid, 0, 3)
+    ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(User) Update
     WinWait, Update MiKTeX
     WinWaitClose
     Run C:\Program Files\MiKTeX 2.9\miktex\bin\x64\internal\miktex-update.exe,,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
-    Win__Fling2(1, wid, 0, 3)
+    ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(User) Update
     WinWait, Update MiKTeX
     WinWaitClose
