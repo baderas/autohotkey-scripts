@@ -23,5 +23,9 @@ IfWinNotExist,Mozilla Thunderbird
 {
     Run "C:\Program Files (x86)\Mozilla Thunderbird\thunderbird.exe"
 }
+IfWinNotExist,Skype
+{
+    Run "C:\Program Files (x86)\Skype\Phone\Skype.exe"
+}
 return
 }
