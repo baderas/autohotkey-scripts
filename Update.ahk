@@ -50,6 +50,8 @@ If !WinExist("Running Chocolatey Update") and !WinExist("Running Miktex(User) Up
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
     Win__Fling2(1, wid, 0, 3)
+    WinWait, Running MSYS2 Update
+    WinWaitClose
     Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; taskkill /IM ConEmu64.exe; taskkill /IM KeePass.exe; choco upgrade -y all; Write-Host \"Press any key to exit ...\"; $x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
