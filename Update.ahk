@@ -15,7 +15,7 @@ SetTitleMatchMode 2
 #u:: {
 If !WinExist("Running Chocolatey Update") and !WinExist("Running MSYS2 Update")
 {
-    Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade -y all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
+    Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; taskkill /IM ConEmu64.exe; choco upgrade -y all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     ;Run C:\Program Files\ConEmu\ConEmu64.exe -Title "Running Chocolatey Update" -run powershell.exe -new_console:a -command "$Host.UI.RawUI.WindowTitle = \"Running Chocolatey Update\"; choco upgrade -y all; Write-Host \"Press any key to exit ...\";$x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
     ;MoveToMouse(process_id)
