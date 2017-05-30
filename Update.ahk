@@ -24,7 +24,7 @@ If !WinExist("Running Chocolatey Update") and !WinExist("Running Miktex(User) Up
     ;;WinWait, Running Miktex(Admin) Update
     WinWait, Update MiKTeX (Admin)
     WinWaitClose
-    Run *runas C:\Program Files\MiKTeX 2.9\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
+    Run *runas C:\MiKTeX\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
     WaitActiveTop(process_id)
     WinGet, wid, ID, ahk_pid %process_id%
     ;;Win__Fling2(1, wid, 0, 3)
