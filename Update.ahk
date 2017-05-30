@@ -16,21 +16,23 @@ SetTitleMatchMode 2
 If !WinExist("Running Chocolatey Update") and !WinExist("Running Miktex(User) Update") and !WinExist("Running Miktex(Admin) Update") and !WinExist("Update MiKTeX (Admin)") and !WinExist("Update MiKTeX") and !WinExist("Running MSYS2 Update")
 {
     ;; Updating Miktex from CMD/Powershell/Bash as User or Admin does not work -> "MiKTeX encountered an internal error." -> Must use GUI Tool
-    Run *runas C:\MiKTeX\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
+    ;; I also do not use a shared installation, only use this for this kind of installation
+    ;;Run *runas C:\MiKTeX\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
+    ;; use the line above, the one below did not work (uncomment only one of them)
     ;;Run *runas C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Miktex(Admin) Update\"; mpm --update-db --update; Write-Host \"Press any key to exit ...\"; $x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
-    WaitActiveTop(process_id)
-    WinGet, wid, ID, ahk_pid %process_id%
+    ;;WaitActiveTop(process_id)
+    ;;WinGet, wid, ID, ahk_pid %process_id%
     ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(Admin) Update
-    WinWait, Update MiKTeX (Admin)
-    WinWaitClose
-    Run *runas C:\MiKTeX\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
-    WaitActiveTop(process_id)
-    WinGet, wid, ID, ahk_pid %process_id%
+    ;;WinWait, Update MiKTeX (Admin)
+    ;;WinWaitClose
+    ;;Run *runas C:\MiKTeX\miktex\bin\x64\internal\miktex-update_admin.exe,,, process_id
+    ;;WaitActiveTop(process_id)
+    ;;WinGet, wid, ID, ahk_pid %process_id%
     ;;Win__Fling2(1, wid, 0, 3)
     ;;WinWait, Running Miktex(Admin) Update
-    WinWait, Update MiKTeX (Admin)
-    WinWaitClose
+    ;;WinWait, Update MiKTeX (Admin)
+    ;;WinWaitClose
     Run C:\MiKTeX\miktex\bin\x64\internal\miktex-update.exe,,, process_id
     ;;Run C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -command "$Host.UI.RawUI.WindowTitle = \"Running Miktex(User) Update\"; mpm --update-db --update; Write-Host \"Press any key to exit ...\"; $x = $host.UI.RawUI.ReadKey(\"NoEcho`,`IncludeKeyDown\");",,, process_id
     WaitActiveTop(process_id)
